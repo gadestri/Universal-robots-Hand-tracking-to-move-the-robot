@@ -1,0 +1,40 @@
+ Program
+   BeforeStart
+     setp≔Ferramenta_const
+     rtde_set_watchdog("input_int_register_0", 1, "PAUSE")
+     MoveJ
+       Waypoint_1
+       tmp≔p[0.21967,-0.1476,0.6,-1.18093,1.32761,-1.282]
+       sync()
+   Robot Program
+     Loop
+       'var_2≔read_input_integer_register(8)'
+       'Switch var_2'
+       'Switch var_1'
+       MoveL
+         'Waypoint_3'
+         tmp
+         Wait: 0.1
+       sync()
+     'write_output_integer_register(0, 0)'
+     'sync()'
+     'write_output_integer_register(0, 1)'
+   Thread_1
+     setp≔Ferramenta_const
+     Loop
+       var_1≔read_input_integer_register(7)
+       tmp≔p[0,0,0,0,0,0]
+       tmp[0] = read_input_float_register(0)
+       tmp[1] = read_input_float_register(1)
+       tmp[2] = read_input_float_register(2)
+       tmp[3] = read_input_float_register(3)
+       tmp[4] = read_input_float_register(4)
+       tmp[5] = read_input_float_register(5)
+       var_4≔get_actual_tcp_pose()
+       Switch var_1
+         Case 11
+           RG6(10)
+         Case 21
+           RG6(70)
+       'If tmp != p[0,0,0,0,0,0]'
+       sync()
